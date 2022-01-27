@@ -1,0 +1,185 @@
+/**
+*   Profile Tabs CSS file.
+*/
+
+.profile-tabs-container {
+    margin-bottom: 600px;
+}
+
+.nav-tabs {
+    border-bottom: 1px solid lightgray;
+    /* width: 95%; */
+
+    /* padding-right:  */
+    margin-right: 150px;
+}
+
+.nav-tabs .tab label {
+    cursor: pointer;
+    /* margin-bottom: 0px; */
+    margin-top: 6px;
+    margin-right: 3px;
+    /* word-break: break-all; */
+    /* overflow: hidden; */
+    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 70px;
+    height: 20px;
+    /* width: inherit; */
+}
+.nav-tabs .tab {
+    background-color: white;
+    padding: 5px 10px 5px 10px;
+    /* margin-right: 5px; */
+    /* border-top: 3px solid white;
+    border-bottom: 3px solid white; */
+    /* border-top-left-radius: 3px;
+    border-top-right-radius: 3px; */
+    cursor: pointer;
+    /* line-height: 15px; */
+    /* margin-bottom: -9px; */
+    /* width: 105px */
+}
+.nav-tabs .active {
+    border-bottom: 2px solid #0741ad;
+}
+.nav-tabs .tab:hover {
+    border-bottom: 2px solid lightgray;
+}
+.nav-tabs .active:hover {
+    border-bottom: 2px solid #0741ad;
+}
+.add-profile {
+    display: inline;
+    float: right;
+    margin-top: -40px;
+    width: 5%;
+    min-width: 107px;
+    margin-bottom: 0px;
+    height: 40px;
+    /* border-top: 3px solid #0741ad;
+    background-color: #0741ad;
+    padding: 0px;
+    margin-right: 5px;
+    margin-top: 14px; */
+    /* border-bottom: 3px solid 0741ad; */
+    /* border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    width: 30px;
+    margin-bottom: -1px; */
+    /* height: 25px; */
+    /* position: ; */
+    /* top: 15px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    line-height: 17px; */
+    /* z-index: ; */
+}
+/* .add-profile:hover {
+    border-top: 3px solid white;
+    background-color: white;
+    color: black;
+} */
+.no-profiles {
+    width: 100%;
+    margin-top: 10%;
+    text-align: center;
+    font-size: 40px;
+}
+.no-profiles button {
+    font-size: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.delete-btn {
+    margin-left: 5px;
+    margin-top: 4px;
+    /* padding: 0px; */
+    /* border: 1px solid red; */
+}
+.delete-btn span {
+    /* border: 1px solid red; */
+    /* position: relative; */
+    /* height: 10px; */
+}
+
+.tabs-content {
+    /* padding: 14px; */
+    padding-top: 10px;
+    /* overflow: auto; */
+    /* background-color: white; */
+}
+.request-method-select {
+    width: 12%;
+    margin-bottom: 0px;
+    display: inline-block;
+    margin-right: 2%;
+}
+.request-url {
+    width: 35%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.send-btn {
+    position: relative;
+    top: 27px;
+    float: right;
+    /* border: 2px solid purple; */
+    /* margin: 0 auto; */
+}
+.send-btn > button {
+    color: white;
+}
+#error-box {
+    display: none;
+    opacity: 1;
+    transition: opacity 0.6s;
+    position: fixed;
+    bottom: 0px;
+    z-index: 100;
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 10px;
+}
+.closebtn {
+    margin-left: 15px;
+    color: #721c24;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+#request-header {
+    display: inline-block;
+    width: 49%;
+    margin-right: 2%;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 12px;
+}
+#response-header {
+    width: 49%;
+    display: inline-block;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 12px;
+}
+.rename-btn {
+    /* margin-top: -100px; */
+    /* margin-left: -4px; */
+    margin-bottom: 60px;
+    /* top: 70px; */
+    /* position: absolute; */
+    /* left: 1156px; */
+}
+.rename-btn > button {
+    height: 25px;
+    line-height: 10px;
+}

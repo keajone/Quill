@@ -1,0 +1,223 @@
+.new-case-container {
+    min-width: 1000px;
+}
+.case-item {
+    width: 100%;
+    border-top: 1px solid lightgray;
+    height: 60px;
+}
+.case-item li {
+    float: left;
+    /* border: 1px solid green; */
+    height: 100%;
+    padding-top: 18px;
+}
+.case-item:hover {
+    background-color: #eaf3fc;
+    cursor: pointer;
+}
+.case-item li label {
+    display: block;
+    font-size: 15px;
+}
+.case-item li label:hover {
+    cursor: pointer;
+}
+.case-item ul {
+    list-style-type: none;
+    /* border: 1px solid red; */
+    width: 100%;
+    padding-left: 0px;
+    height: 100%;
+}
+.li-name {
+    margin-right: 10px;
+    padding-left: 15px;
+    width: 15%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.li-name label {
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+.li-url {
+    text-align: left;
+    /* border: 1px solid green; */
+    width: 58%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.li-url label {
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    white-space: nowrap; 
+}
+.li-method {
+    width: 10%;
+}
+.li-method label {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 70px;
+}
+
+.li-edit {
+    text-align: center;
+    /* padding-right: 18px; */
+    padding-top: 10px !important;
+    /* margin-left: 500px; */
+    width: 5%;
+}
+.li-edit button {
+    /* float: right; */
+}
+.li-run {
+    text-align: center;
+    min-width: 40px;
+    padding-top: 10px !important;
+    width: 5%;
+}
+
+/* Run button */
+.li-run button {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* loading spinner container */
+.li-run div {
+    padding-top: 5px;
+}
+
+.case-item .li-pass {
+    text-align: center;
+    min-width: 40px;
+    display: none;
+    width: 5%;
+    padding-top: 8px !important;
+}
+.li-pass button {
+    padding-top: 5px;
+}
+.case-item .li-fail {
+    text-align: center;
+    width: 5%;
+    min-width: 40px;
+    display: none;
+    padding-top: 10px !important;
+}
+
+.case-list {
+    width: 90%;
+    margin-left: 5%;
+    /* border: 1px solid blue; */
+}
+
+.case-search {
+    /* border: 1px solid purple; */
+    padding-top: 3px;
+    width: 95%;
+    padding-right: 10px;
+    /* margin-top: 10px;
+    margin-bottom: 10px;
+    width: 350px;
+    margin-left: 75%; */
+}
+button#run-all-cases-btn {
+    margin-left: 3px;
+    /* width: 200px; */
+}
+svg {
+    display: inline !important;
+}
+.run-all-container {
+    /* position: absolute;
+    right: 330px; */
+    /* border: 1px solid green; */
+    padding-left: 5px;
+    /* padding-top: 3px; */
+    width: 5%;
+    min-width: 110px;
+}
+#SLA_run-all-cases-spnr {
+    position: relative;
+    /* float: left; */
+    
+    top: 20px;
+}
+#run-all-cases-spnr {
+    text-align: center;
+}
+.td-spacer {
+    width: 75%;
+}
+.view-cases-table-header {
+    /* border: 1px solid red; */
+    width: 90%;
+    margin-left: 5%;
+    height: 70px;
+    
+
+}
+.view-cases-table-header tr {
+    width: 100%;
+}
+/* .view-cases-table-header td {
+     border: 1px solid red;
+} */
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+.has-search {
+    margin-bottom: 0px;
+    width: 330px;
+    float: right;
+}
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 50;
+    display: block;
+    width: 2.375rem;
+    /* top: 200px !important; */
+    line-height: 2.375rem;
+    text-align: center;
+    color: #aaa;
+}
+.label-header-list {
+    list-style-type: none;
+    width: 90%;
+    margin-left: 5%;
+    /* border: 1px solid blue; */
+    padding-left: 0px;
+    margin-bottom: 0px;
+
+}
+#name {
+    margin-right: 10px;
+    width: 15%;
+    padding-left: 13px;
+}
+#url {
+    width: 58%;
+}
+#method {
+    width: 10%;
+    padding-left: 7px;
+}
+#edit {
+    width: 5%;
+    text-align: center;
+}
+#run {
+    width: 5%;
+    text-align: center;
+}
+#status {
+    width: 5%;
+    min-width: 40px;
+    text-align: center;
+}
+.label-header-list li {
+    display: inline-block;
+    /* border: 1px solid red; */
+}

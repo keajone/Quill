@@ -1,0 +1,11 @@
+/* spinner -- note: size is determined in 'LoadingAnimation.js' */
+.SLA {
+}
+
+/* container for spinner */
+.SLA-container {
+    display: none;
+    height: 60px;
+    /* background-color: wh */
+    z-index: 50;
+}

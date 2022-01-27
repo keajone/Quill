@@ -1,0 +1,127 @@
+.new-suite-form {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.new-Suite-submit {
+    text-align: right;
+}
+.new-suite-case-list {
+    width: 100%;
+    /* border: 1px solid blue; */
+}
+.new-suite-case-list table{
+    width: 100%;
+    table-layout: fixed;
+}
+.new-suite-case-list td{
+    width: 50%;
+}
+.to-add-list {
+    overflow: scroll;
+    /* border: 1px solid red; */
+    height: 500px;
+    margin-right: 5px;
+}
+.to-add-list ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+.added-list ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+.added-list {
+    /* border: 1px solid green; */
+    margin-top: 86px;
+    overflow: scroll;
+    height: 500px;
+    margin-left: 5px;
+}
+
+.case-search-new-suite {
+    width: 100%;
+    padding-right: 5px;
+}
+.case-search-new-suite .form-control-feedback {
+    position: relative;
+    z-index: 50;
+    display: inline-block;
+    width: 2.375rem;
+    top: 36px;
+    left: -137px;
+    text-align: center;
+    color: #aaa;
+}
+.case-search-new-suite .form-control {
+    padding-left: 2.375rem;
+    
+}
+.case-item-new-suite {
+    width: 100%;
+    height: 60px;
+}
+.case-item-new-suite ul {
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid lightgray;
+}
+.case-item-new-suite li {
+    /* float: left; */
+    /* border: 1px solid yellow; */
+    height: 100%;
+    padding-top: 18px;
+}
+.case-item-new-suite-name {
+    width: 20%;
+    padding-left: 10px;
+    float: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;    
+}
+.case-item-new-suite label {
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+}
+.case-item-new-suite-url {
+    padding-right: 10px;
+    padding-left: 10px;
+    width: 55%;
+    float: left;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.case-item-new-suite-method {
+    width: 10%;
+    float: left;
+    text-align: right;
+    padding-right: 5px;
+    /* margin-right: 30px; */
+}
+.case-item-new-suite-method label {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    /* width: 70px; */
+}
+.case-item-new-suite li label {
+    display: block;
+    font-size: 15px;
+}
+.case-item-new-suite:hover {
+    background-color: #eaf3fc;
+}
+.case-item-new-suite-add {
+    width: 15%;
+    float: left;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 10px !important;
+}
+.case-item-new-suite-add button {
+    height: 37px;
+}
+.case-item-new-suite-add button label:hover {
+    cursor: pointer;
+}

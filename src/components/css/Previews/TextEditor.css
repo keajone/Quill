@@ -1,0 +1,9 @@
+#mode-dropdown {
+    position: relative;
+    z-index: 50;
+    float: right;
+    bottom: 503px;
+    right: 6px;
+    font-size: 10px;
+
+}
