@@ -1,0 +1,38 @@
+/**
+
+CSS file for main component that displays
+a side bar and drawing canvas
+
+**/
+
+html, body {
+    height: 100%;
+}
+
+.main-container {
+    border-width: 5px;  
+    border-style: groove;
+    display: flex;
+    /* height: 150vh; */
+}
+  
+.side-container {
+    flex: 1;
+    width: 25%;
+    /* height: 100%; */
+    border-right-width: 5px;
+    border-right-style: groove;
+    /* float: left; */
+
+    /* for debugging */
+    /* background: red; */
+}
+  
+.canvas-container {
+    width: 75%;
+    /* margin-left: 25%; */
+    /* height: calc(100%); */
+
+    /* for debugging */
+    /* background: black; */
+}

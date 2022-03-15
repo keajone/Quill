@@ -1,9 +1,7 @@
-class HTTP {
-
-    constructor(header, body, method, url) {
-
-        console.log(body);
-
+class HTTP
+{
+    constructor(header, body, method, url)
+    {
         if (typeof header === "string" && header.length > 0)
         {
             header = JSON.parse(header);
@@ -24,28 +22,38 @@ class HTTP {
         }
 
         this.requestBody = body;
-        console.log(this.requestBody)
         this.method = method;
         this.url = url;
         this.responseBody = "";
         this.responseHeader = "";
     }
 
-    request = async () => {
-        var err = undefined
+    setScore = (s) =>
+    {
+        this.responseBody = {score: s};
+    }
+
+    request = async () =>
+    {
+        //var err = undefined
         console.log(this.url)
         console.log(this.method)
         console.log(this.requestHeader)
         console.log(this.requestBody)
-        try {
-            const response = await fetch(this.url, {
+        
+        try
+        {
+            const response = await fetch("http://localhost:5000/", {
                 method: this.method,
                 headers: this.requestHeader,
                 body: JSON.stringify(this.requestBody),
             });
 
-            if (!response.ok) {
-                err = new Error(response.status + " (" + response.statusText + ")");
+            console.log(response);
+
+            if (!response.ok)
+            {
+                console.log("ERROR -- Response not OK");
             }
 
             // Collect response header information
@@ -59,26 +67,22 @@ class HTTP {
 
             // Collect response body information
             const contentType = response.headers.get("content-type");
-            console.log(contentType);
             if (contentType && 
                 (contentType.indexOf("application/json") !== -1 || contentType.indexOf("application/hal+json") !== -1)) {
                 
-                // process JSON
+                // process JSON to an Object for easy access to fields
                 const json = await response.json();
                 this.responseBody = JSON.stringify(json);
+                this.responseBody = JSON.parse(this.responseBody);
 
             } else {
-
                 // process Text/HTML/XML
                 const text = await response.text();
                 this.responseBody = text;
             }
-            // if (err !== undefined)
-            //     throw err;
         }
         catch (err) {
-            console.log(err);
-            throw new Error("Failed to send "+ this.method +" request to '"+ this.url +"'.");
+            throw new Error("Failed to send "+ this.method +" request to '"+ this.url +"'."+err);
         }
     }
 

@@ -1,47 +1,41 @@
+// [React]
 import React from 'react';
 
-import Error from "../ErrorHandling/Error";
-
+// [CSS]
 import '../css/Tool/NavBar.css';
 
-import { 
-    HomePath
-} from '../../App';
+// [Paths]
+import { HomePath, FadingAlphabetPath } from '../../App';
 
 const NavBar = () => (
 
     <div className="NavBar">
-        testing
         <ul>
             {/* Logo */}
             <li>
-                <a href={"/MemoryTomatoes" + HomePath}>
-                    <img src="/MemoryTomatoes/logo.png" alt="Home"/>
+                <a href={"/Quill" + HomePath}>
+                    <img src="/logo.png" alt="Home"/>
                 </a>
             </li>
 
-            {/* Start collapsable content */}
+            {/* Fading Alphabet Exercise */}
+            <li>
+                <a type="button" className="btn btn-secondary" href={"/Quill" + FadingAlphabetPath + "/Aa"}>Fading Alphabet</a>
+            </li>
 
-            {/* Demo collapsable from testful */}
-            {/* Create test suites */}
-            {/*<li className="dropdown-container">
-                <div className="dropdown">
-                    <button type="button" className="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                        Test Suites
-                    </button>
-                    <div className="dropdown-menu">
-                        <a href={"/testful" + CreateNewSuitePath} className="dropdown-item">Create New</a>
-                        <a href={"/testful" + ViewAllSuitesPath} className="dropdown-item">View All</a>
-                    </div>
-                </div>
-            </li>*/}
-
+            {/* TODO: Use this button to implement another "handwriting exercise"
+            <li>
+                <a type="button" className="btn btn-secondary" href={"/Quill" + HomePath}>Exercise 2</a>
+            </li>
+             */}
+            
+            {/* TODO: Use this button to implement another "handwriting exercise"
+            <li>
+                <a type="button" className="btn btn-secondary" href={"/Quill" + HomePath}>Exercise 3</a>
+            </li>
+             */}
         </ul>
-
-        <Error />
-
     </div>
-
 );
 
 export default NavBar;

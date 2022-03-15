@@ -1,32 +1,40 @@
-// React
+// [React]
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
-// Components
+// [Components]
 import Home from './components/Home';
+import ScrollToTop from './components/Tool/ScrollToTop';
+import FadingAlphabetControllerWithNavigate from './components/Canvas/FadingAlphabetController';
 
-// Styling
+// [CSS]
 import './App.css';
 
-// Route paths
+// [Paths]
 const HomePath = "/";
-
-// Demo adding a path
-// const TmpPath = "/tmp";
+const FadingAlphabetPath = "/FadingAlphabet";
 
 function App() {
   return (
-    <Router basename="/MemoryTomatoes">
+    <Router basename="/Quill">
       <div id="App">
-        <Routes>
 
-          {/** Home */}
-          <Route exact path={HomePath} element={<Home />} />
+        {/** This component will force page to scroll to top when route changes */}
+        <ScrollToTop>
+          
+          <Routes>
 
-          {/** Demo adding a path with identifier in path */}
-          {/** <Route exact path={DetailsPath+"/:id"} element={Details} /> */}
+            {/** Home */}
+            <Route exact path={HomePath} element={<Home />} />
 
-        </Routes>
+            {/** FadingAlphabet */}
+            <Route exact path={FadingAlphabetPath+"/:id"} element={<FadingAlphabetControllerWithNavigate />} />
+
+            {/** Demo adding a path with identifier in path */}
+            {/** <Route exact path={DemoPath+"/:id"} element={DemoElement} /> */}
+
+          </Routes>
+        </ScrollToTop>
       </div>
     </Router>
   );
@@ -34,5 +42,6 @@ function App() {
 
 export default App;
 export {
-  HomePath
+  HomePath,
+  FadingAlphabetPath
 };

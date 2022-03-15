@@ -1,15 +1,29 @@
 /* spinner -- note: size is determined in 'LoadingAnimation.js' */
 .LA {
-    position: relative;
+    /* position: relative; */
     bottom: 350px;
 }
 
 /* container for spinner */
 .text-center {
     display: none;
-    height: 530px;
-    position: relative;
-    margin-left: 51%;
+    height: 200px;
+    width: 20%;
+    position: absolute;
+    margin-top: 40px;
     background-color: white;
     z-index: 50;
+}
+
+#LA_fading-alphabet-side-bar-loader {
+    margin-top: 0px;
+    padding-top: 10px;
+    top: 350px;
+    width: 24%;
+    right: 75.5%;
+    /* float: right; */
+    /* border-left-width: 5px;
+    border-left-style: groove; */
+    /* border-right-width: 5px;
+    border-right-style: groove; */
 }

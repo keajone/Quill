@@ -1,9 +1,9 @@
+// [React]
 import React from 'react';
 
+// [Components]
 import NavBar from "./Tool/NavBar"
 import Main from "./Tool/Main"
-
-import './css/Home.css';
 
 function Home() {
 
@@ -12,7 +12,6 @@ function Home() {
         <div className="home-container">
             
             <NavBar />
-            {/** PageHeader? */}
             <Main />
 
         </div>

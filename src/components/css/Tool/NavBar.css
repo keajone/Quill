@@ -1,26 +1,27 @@
 /**
-*   ToolNav CSS file
+*   NavBar CSS file
 *
-*   Among other styling, ToolNav takes
+*   Among other styling, NavBar takes
 *   advantage of Bootstrap 4 styling.   
 */
 
-.ToolNav {
+.NavBar {
     margin: 0;
     padding: 0;
 }
-.ToolNav img {
+.NavBar img {
     height: 50px;
+    margin-right: 20px;
 }
 
-.ToolNav ul {
-    background-color: #0741ad;
+.NavBar ul {
+    background-color: #E0E2DB;
     margin: 0;
     padding: 0;
     list-style-type: none;
     height: 60px;
 }
-.ToolNav ul li {
+.NavBar ul li {
 
     /* vertically center */
     position: relative;
@@ -32,21 +33,21 @@
     /* horizantal list */
     float: left;
 
-    margin-left: 10px;
+    margin-left: 12px;
 }
-.ToolNav ul li:last-child {
+
+/* Make last list item float right side of nav bar */
+
+/* .NavBar ul li:last-child {
     float: right;
     margin-right: 15px;
-}
-.btn-primary {
-    background-color: #0741ad;
-    border-color: #0741ad;
-    color: #d8e0f2;
-}
+} */
+
 .dropdown-container {
     position: relative;
     z-index: 1000;
 }
+
 /* .dropdown {
      margin-top: 30%;
     transform-style: preserve-3d;
