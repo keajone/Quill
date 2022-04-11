@@ -1,91 +1,63 @@
-// A utility class to compare the coordinates of letter series
-// within the drawing canvas with the actual input from 
-// a user drawing said letter series on the canvas.
+// [Components]
+import AlphabetCoordinates from "./AlphabetCoordinates";
+import ScoringMethod from "./ScoringMethod";
+
+/*
+ * A utility object to compare the coordinates of letter series
+ * within the drawing canvas with the actual input from a user
+ * drawing with the given letter series on the canvas. 
+ */
 class AlphabetSeriesCanvasCoordinatesUtility
 {
     constructor(series)
     {
-        // character series this utility will focus on
+        // Character series this utility will focus on, i.e., "Aa" or "Bb", etc.
         this.series = series;
         
-        // arbitrary offset used for scoring
+        // Arbitrary pixel offset used for scoring
         this.offset = 20;
 
-        /***************************************************
-         * These fields below keep track of the required coords
-         * to draw the letter series correctly. In stages, 
-         * and in order, utility will change 'passed' field
-         * to 'true' to signify that user has drawn over 
-         * that coord correctly.
-         ***************************************************/
-
-        this.Coordinates = {
-            
-            Aa: [
-                // A
-                {x: 39, y: 23,   passed: false},
-                {x: 21, y: 89,   passed: false},
-                {x: 14, y: 125,  passed: false},
-                {x: 39, y: 23,   passed: false},
-                {x: 62, y: 89,   passed: false},
-                {x: 68, y: 125,  passed: false},
-                {x: 21, y: 89,   passed: false},
-                {x: 62, y: 89,   passed: false},
-
-                // a
-                {x: 123, y: 62,  passed: false},
-                {x: 102, y: 69,  passed: false},
-                {x: 92, y: 87,   passed: false},
-                {x: 90, y: 109,  passed: false},
-                {x: 100, y: 124, passed: false},
-                {x: 116, y: 121, passed: false},
-                {x: 124, y: 106, passed: false},
-                {x: 123, y: 85,  passed: false},
-                {x: 123, y: 62,  passed: false},
-                {x: 124, y: 106, passed: false},
-                {x: 123, y: 85,  passed: false},
-                {x: 132, y: 124, passed: false},
-            ],
-
-            Bb: [ ],
-
-            Cc: [ ]
-        };
-
-        // Object to keep track of proper progress increases
-        // based on the number of coords in each character series.
-        // TODO: Could this be stored in the coords object above?
-        this.ProgressIncreases = {
-            Aa: 100 / this.Coordinates.Aa.length
-        };
-    }
+        // Copy of coords to keep track of coordinates of series.
+        // Using JSON.parse/stringify allows for soft copy without reference.
+        this.Coordinates = JSON.parse(JSON.stringify(AlphabetCoordinates));
+    };
 
     // Score the given mouse coordinates by determining the 
     // position of the letter that is being drawn and then 
     // making sure that the coordinates are close enough to 
     // the pre-determined coordinates of said position.
-    scoreMouseMovement(x, y)
+    scoreMouseMovement(x, y, scoring_method)
     {
-        var coords_tmp = this.Coordinates[this.series];
+        // list of coords for this series
+        var coords_list = this.Coordinates[this.series];
 
-        for (var i = 0; i < coords_tmp.length; i++)
+        for (var i = 0; i < coords_list.length; i++)
         {
-            var coords = coords_tmp[i];
+            var coords = coords_list[i];
 
             if ( !coords.passed )
             {
                 // make sure coordinate pairs are close enough.
-                // NOTE: based on offset in constructor.
                 if (this.inRange(x, y, coords.x, coords.y))
                 {
                     //mark as checked!
                     this.Coordinates[this.series][i].passed = true;
 
-                    //return the proper progess increase
-                    return this.ProgressIncreases[this.series];
+                    //return the proper progess bar increase
+                    return 100 / this.Coordinates[this.series].length;
                 }
                 else
-                    return 0;
+                {
+                    // return 0 on STRICT scoring method because
+                    // this coord MUST be checked (and be in range)
+                    // in order to move onto next coord pair
+                    //
+                    // EASY scoring will allow for all coords to get 
+                    // checked before returning 0...allowing for 
+                    // more generous grading of the canvas drawing
+                    if (scoring_method === ScoringMethod.STRICT)
+                        return 0;
+                }
             }
         }
         return 0;

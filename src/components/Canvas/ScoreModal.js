@@ -44,7 +44,7 @@ const ScoreModal = (props) => (
                         <div>
                             You were able to succesfully complete the series '{props.state.character}' 
                             with an average score of &nbsp;
-                            <span style={{fontWeight:900}}>{props.state.score+"%"}</span>. <br/><br/>
+                            <span style={{fontWeight:900}}>{props.state.score.toFixed(1)+"%"}</span>. <br/><br/>
                             You can now move onto practicing a more difficult series!
                         </div>
                         :
@@ -52,7 +52,7 @@ const ScoreModal = (props) => (
                         <div>
                             To move onto the next series you need to have achieved a score of at 
                             least 90%. <br/><br/>
-                            Your score: <span style={{fontWeight:900}}>{props.state.score+"%"}</span>
+                            Your score: <span style={{fontWeight:900}}>{props.state.score.toFixed(1)+"%"}</span>
                         </div>
                     }
                 </div>
