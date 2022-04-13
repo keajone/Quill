@@ -8,6 +8,7 @@ import { faUndoAlt } from '@fortawesome/free-solid-svg-icons'
 import {FadingAlphabetController} from './FadingAlphabetController';
 import GenericCanvas from './GenericCanvas';
 import AlphabetSeriesCanvasCoordinatesUtility from './AlphabetSeriesCanvasCoordinatesUtility';
+import ScoringMethod from './ScoringMethod';
 
 /**
  * Scoring canvas component 
@@ -31,9 +32,6 @@ class ScoringCanvas extends GenericCanvas
 
         // should just be an empty simple canvas with no letters
         this.imgSrc = FadingAlphabetController.getImgSrc(this.props.phase,this.props.character);
-
-        // reference to the canvas drawing
-        this.ref = undefined;
 
         this.state = {
             imgSrc: this.imgSrc,
@@ -66,12 +64,16 @@ class ScoringCanvas extends GenericCanvas
             var x = event.offsetX;
             var y = event.offsetY;
 
-            // result is an integer to update progress
-            var result = this.utility.scoreMouseMovement(x,y);
+            // result is an increment to update progress bar
+            var result = this.utility.scoreMouseMovement(x, y, ScoringMethod.EASY);
             
+            // update state
             this.setState(state => ({
                 progress: state.progress += result
             }));
+
+            // update controller with new progress
+            this.props.updateController(this.props.name, this.state.progress + result)
         }
     }
 
@@ -92,6 +94,9 @@ class ScoringCanvas extends GenericCanvas
         this.setState(state => ({
             progress: 0
         }));
+
+        // update controller
+        this.props.updateController(this.props.name, 0);
     };
 
     // Renders the ScoringCanvas component
@@ -105,7 +110,7 @@ class ScoringCanvas extends GenericCanvas
                     <CanvasDraw brushRadius={5} 
                                 lazyRadius={0} 
                                 brushColor="#000000" 
-                                ref={ref => (this.ref = ref)}
+                                ref={ref => this.ref = ref}
                                 canvasHeight={150}
                                 canvasWidth={150}
                                 imgSrc={this.state.imgSrc}
@@ -117,7 +122,12 @@ class ScoringCanvas extends GenericCanvas
                 <div className="progress" style={{ height: this.progressHeight }}>
                     <div className="progress-bar progress-bar-striped progress-bar-animated bg-success" 
                             style={{ width: this.state.progress+"%", height: this.progressHeight }}>
-                            { this.state.progress + "%"}
+                            {
+                                this.state.progress.toFixed(1) >= 100
+
+                                ? "100%"
+                                : this.state.progress.toFixed(1) + "%"
+                            }
                     </div>
                 </div>
 

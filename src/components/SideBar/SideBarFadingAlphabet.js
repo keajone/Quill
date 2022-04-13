@@ -61,7 +61,11 @@ class SideBarFadingAlphabet extends SideBar
                         <div className="progress" style={{ height: this.progressHeight }}>
                             <div className="progress-bar progress-bar-striped progress-bar-animated bg-info" 
                                  style={{ width: this.props.percentageOverall+"%", height: this.progressHeight }}>
-                                 { this.props.percentageOverall + "%"}
+                                 { 
+                                    this.props.percentageOverall.toFixed(1) >= 100
+                                    ? "100%"
+                                    : this.props.percentageOverall.toFixed(1) + "%"
+                                 }
                             </div>
                         </div>
 

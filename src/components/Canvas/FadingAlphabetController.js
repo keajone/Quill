@@ -8,6 +8,7 @@ import FadingAlphabet from './FadingAlphabet';
 import LoadingAnimation from '../Animations/LoadingAnimation';
 import HTTP from '../../http/http';
 import ScoreModal from './ScoreModal';
+import MarkAsDoneModal from './MarkAsDoneModal';
 
 // [Paths]
 import { FadingAlphabetPath } from '../../App';
@@ -47,11 +48,15 @@ class FadingAlphabetController extends PureComponent
 
         this.state = {
             character: this.character,
-            progressPercentageOverall: 0
+            progressPercentageOverall: 0,
+            score: 0
         };
 
         this.scoreCanvasDrawings = this.scoreCanvasDrawings.bind(this);
-        this.score = undefined;
+        this.score = 0;
+
+        // boolean to decide how to score the drawings after submit is clicked
+        this.scoreThroughHttp = false;
     };
 
     // Called whenever component DOM updates, i.e. URL path changes
@@ -111,8 +116,22 @@ class FadingAlphabetController extends PureComponent
         // Toggle the Loading Animation in the SideBar
         this.toggleLoadingAnimation();
 
-        // Send request for a score of canvas drawings
-        this.scoreCanvasDrawings(drawingRefs);
+        // Send request for a score of canvas drawings (if enabled)
+        if (this.scoreThroughHttp)
+            this.scoreCanvasDrawings(drawingRefs);
+        else
+        {
+            // just take average of the 3 progress bars
+            var sum = 0.0;
+            for (let value of drawingRefs.values())
+                sum += value;
+            this.score = sum / Array.from(drawingRefs.values()).length;
+
+             // Update state with score
+            this.setState({
+                score: this.score
+            });
+        }
 
         // Toggles
         this.toggleLoadingAnimation();
@@ -121,13 +140,9 @@ class FadingAlphabetController extends PureComponent
 
         // Trigger the correct modal
         if (this.score >= this.acceptableScore)
-        {
             window.$("#SuccessScoreModal").modal();
-        }
         else
-        {
             window.$("#FailureScoreModal").modal();
-        }
     };
 
     // Handle navigating to next letter series
@@ -138,7 +153,7 @@ class FadingAlphabetController extends PureComponent
         // navigate there
         this.props.navigate(FadingAlphabetPath+"/"+this.characters[nextCharIndex]);
         // adjust percentage of overall score
-        this.adjustProgressPercentageOverall(20); // 20 is ARBITRARY, only 5 letters so far
+        this.adjustProgressPercentageOverall(16.67); // 16.67 is temporary, only 6 letters so far
     };
 
     // Handle the retry of the current character series
@@ -146,6 +161,12 @@ class FadingAlphabetController extends PureComponent
     {
         this.props.navigate(FadingAlphabetPath+"/"+this.state.character);
     };
+
+    // Handle when mark as done buttons are clicked prematurely
+    handleMarkAsDone = () =>
+    {
+        window.$("#MarkAsDoneModal").modal();
+    }
 
     // Send request to backend to score the drawings, then set new score
     scoreCanvasDrawings = async (drawingRefs) =>
@@ -178,7 +199,6 @@ class FadingAlphabetController extends PureComponent
         }
 
         // Set the score in the SideBar
-        this.score = 90;
         this.setState(state => ({
             score: this.score
         }));
@@ -197,14 +217,18 @@ class FadingAlphabetController extends PureComponent
                                         progressPercentageOverall={this.state.progressPercentageOverall}
                                         handleSubmit={this.handleSubmitClick}
                                         sideBarLoaderId={this.sideBarLoaderId}
-                                        characterBoxID={this.characterBoxID}/>
+                                        characterBoxID={this.characterBoxID}
+                                        markAsDoneHandler={this.handleMarkAsDone}/>
                     
                     :   // Trying to navigate to a series that doesn't exst.
                         // i.e. 'Ab' or '&*'
                         "Problem with URL: "+this.state.character+" was not found."
                 }
 
-                {/** Modals are hidden until submit button is clicked */}
+                {/** Mark As Done Modal are hidden unless 'Mark as done' is clicked prematurely */}
+                <MarkAsDoneModal id={"MarkAsDoneModal"}/>
+
+                {/** Score Modals are hidden until submit button is clicked */}
                 <ScoreModal id={"SuccessScoreModal"} state={this.state} 
                             handleNext={this.handleNext} isSuccess={true}/>
                 <ScoreModal id={"FailureScoreModal"} state={this.state}

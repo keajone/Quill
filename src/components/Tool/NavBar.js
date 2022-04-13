@@ -7,6 +7,9 @@ import '../css/Tool/NavBar.css';
 // [Paths]
 import { HomePath, FadingAlphabetPath } from '../../App';
 
+/**
+ * @returns HTML elements that render the Navigation Bar
+ */
 const NavBar = () => (
 
     <div className="NavBar">
@@ -18,22 +21,21 @@ const NavBar = () => (
                 </a>
             </li>
 
-            {/* Fading Alphabet Exercise */}
-            <li>
-                <a type="button" className="btn btn-secondary" href={"/Quill" + FadingAlphabetPath + "/Aa"}>Fading Alphabet</a>
+            {/* Exercise(s) Dropdown */}
+            <li className="dropdown-container">
+                <div className="dropdown">
+                    <button type="button" className="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+                        Exercises
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right">
+
+                        {/* Fading Alphabet Exercise */}
+                        <a className="dropdown-item" href={"/Quill" + FadingAlphabetPath + "/Aa"}>Fading Alphabet</a>
+                    
+                    </div>
+                </div>
             </li>
 
-            {/* TODO: Use this button to implement another "handwriting exercise"
-            <li>
-                <a type="button" className="btn btn-secondary" href={"/Quill" + HomePath}>Exercise 2</a>
-            </li>
-             */}
-            
-            {/* TODO: Use this button to implement another "handwriting exercise"
-            <li>
-                <a type="button" className="btn btn-secondary" href={"/Quill" + HomePath}>Exercise 3</a>
-            </li>
-             */}
         </ul>
     </div>
 );

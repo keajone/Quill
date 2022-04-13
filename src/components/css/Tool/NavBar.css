@@ -4,16 +4,18 @@
 *   Among other styling, NavBar takes
 *   advantage of Bootstrap 4 styling.   
 */
-
 .NavBar {
     margin: 0;
     padding: 0;
 }
+
+/* far right img link */
 .NavBar img {
     height: 50px;
-    margin-right: 20px;
+    margin-left: -28px;
 }
 
+/* unordered list that is the navbar */
 .NavBar ul {
     background-color: #E0E2DB;
     margin: 0;
@@ -21,8 +23,9 @@
     list-style-type: none;
     height: 60px;
 }
-.NavBar ul li {
 
+/* each item in navbar */
+.NavBar ul li {
     /* vertically center */
     position: relative;
     top: 50%;
@@ -32,32 +35,11 @@
 
     /* horizantal list */
     float: left;
-
     margin-left: 12px;
 }
 
 /* Make last list item float right side of nav bar */
-
-/* .NavBar ul li:last-child {
+.NavBar ul li:last-child {
     float: right;
     margin-right: 15px;
-} */
-
-.dropdown-container {
-    position: relative;
-    z-index: 1000;
 }
-
-/* .dropdown {
-     margin-top: 30%;
-    transform-style: preserve-3d;
-    transform: translate3d(0,38px,0) !important;
- }
- .dropdown-menu{
-     height: auto !important;
-     overflow: hidden;
-     position: fixed !important;
-     z-index: 1000;
-     transform-style: preserve-3d;
-     transform: translate3d(0,38px,0) !important;
- } */

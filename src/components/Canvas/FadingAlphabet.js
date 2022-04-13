@@ -1,11 +1,11 @@
 // [React]
 import React, {PureComponent} from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faInfo } from '@fortawesome/fontawesome-free-solid'
 
 // [Components]
 import SideBarFadingAlphabet from '../SideBar/SideBarFadingAlphabet'
 import FadingAlphabetInfoModal from './FadingAlphabetInfoModal'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfo } from '@fortawesome/fontawesome-free-solid'
 import GenericCanvas from './GenericCanvas';
 import ScoringCanvas from './ScoringCanvas';
 
@@ -29,7 +29,7 @@ class FadingAlphabet extends PureComponent
         this.phaseTwoCollection = [];
         this.phaseThreeCollection = [];
         this.phaseFourCollection = [];
-        this.phaseFiveCollection = [];
+        this.phaseFiveCollection = new Map();
 
         this.state = {
             progressPercentageLetter: 0,
@@ -99,38 +99,40 @@ class FadingAlphabet extends PureComponent
         }
     };
 
-    updateRefFive =  (ref) =>
+    updateRefFive =  (name, progress) =>
     {
-        if (this.phaseFiveCollection.length === 3 && ref !== null)
-        {
-            this.phaseFiveCollection.length = 0;
-            this.phaseFiveCollection.push(ref);
-        }
-        else if (ref !== null)
-        {
-            this.phaseFiveCollection.push(ref);
-        }
+        this.phaseFiveCollection.set(name, progress);
+        // console.log(this.phaseFiveCollection);
     };
 
     // Clear the data drawn in each canvas in the collection...subtract from progress if they were finished
     clearCanvasCollection = (collection, phaseNum) =>
     {
-        // subtract if already clicked as "mark as done"
-        var button = document.getElementById(this.props.character+"_phase"+phaseNum+"_doneButton");
-        if (button.disabled)
+        if (phaseNum !== 5)
         {
-            this.adjustProgressPercentageLetter(-20);   // -20 is abitrary...only 5 phases CURRENTLY
-            this.toggleCanvasCollection(phaseNum) // enable the phase canvas collection
-            this.toggleMarkButton(phaseNum);      // enable the "mark as done button"
-        } 
+            // subtract if already clicked as "mark as done"
+            var button = document.getElementById(this.props.character+"_phase"+phaseNum+"_doneButton");
+            if (button.disabled)
+            {
+                this.adjustProgressPercentageLetter(-20);   // -20 is abitrary...only 5 phases CURRENTLY
+                this.toggleCanvasCollection(phaseNum) // enable the phase canvas collection
+                this.toggleMarkButton(phaseNum);      // enable the "mark as done button"
+            }
 
-        // clear the canvas collection
-        collection.forEach( function(canvas) { canvas.clear() } );
-
-        // if phase 5 (scoring)
-        if (phaseNum === 5)
+            // clear the canvas collection
+            collection.forEach( function(canvas) { canvas.clear() } );
+        }
+        else
         {
-            // TODO: figure out what to do here...nothing?
+            // phase 5 (scoring canvas)
+            // Just manually click the 'clear' buttons for each one.
+            // ScoringCanvas deals with the onClick associated with
+            // each clear button on its own.
+            var buttons = document.getElementsByClassName('canvas-scoring-clear-button');
+            for(var i = 0; i < buttons.length; i++)  
+                buttons[i].click();
+
+            collection.clear();
         }
     };
 
@@ -169,7 +171,7 @@ class FadingAlphabet extends PureComponent
         }
         else
         {
-            throw Error("Please make sure all exercise squares are attempted before marking as done!");
+            this.props.markAsDoneHandler();
         }
     };
 
@@ -193,7 +195,7 @@ class FadingAlphabet extends PureComponent
     render = () =>
     {
         return (
-            <div className="main-container">
+            <div className="main-container" key={this.props.character}>
 
                 <div className="side-container">
                     <SideBarFadingAlphabet percentageLetter={this.state.progressPercentageLetter}
@@ -219,9 +221,9 @@ class FadingAlphabet extends PureComponent
                     <div>
 
                         {/** Trace inside of each letter */}
-                        <GenericCanvas name={this.props.character+"_1_phase1"} phase={1} character={this.props.character} updateRef={this.updateRefOne} disabled={this.state.disablePhaseOne} imgSrc={"/fadingAlphabet/phase"+1+"/letter_"+this.props.character+".png"}/>
-                        <GenericCanvas name={this.props.character+"_2_phase1"} phase={1} character={this.props.character} updateRef={this.updateRefOne} disabled={this.state.disablePhaseOne} imgSrc={"/fadingAlphabet/phase"+1+"/letter_"+this.props.character+".png"}/>
-                        <GenericCanvas name={this.props.character+"_3_phase1"} phase={1} character={this.props.character} updateRef={this.updateRefOne} disabled={this.state.disablePhaseOne} imgSrc={"/fadingAlphabet/phase"+1+"/letter_"+this.props.character+".png"}/>
+                        <GenericCanvas name={this.props.character+"_1_phase1"} phase={1} character={this.props.character} updateRef={this.updateRefOne} disabled={this.state.disablePhaseOne}/>
+                        <GenericCanvas name={this.props.character+"_2_phase1"} phase={1} character={this.props.character} updateRef={this.updateRefOne} disabled={this.state.disablePhaseOne}/>
+                        <GenericCanvas name={this.props.character+"_3_phase1"} phase={1} character={this.props.character} updateRef={this.updateRefOne} disabled={this.state.disablePhaseOne}/>
                             <div className="fa-button-container" >
                             <button onClick={() => this.clearCanvasCollection(this.phaseOneCollection, 1)}
                                 className="btn btn-secondary canvas-clear-button">
@@ -291,9 +293,9 @@ class FadingAlphabet extends PureComponent
                     <span style={{marginLeft: "10px", fontFamily: "chalkboard", fontSize: "20px"}}>Scoring</span>
                     <div>
                         {/** Write each letter with no starting dot */}
-                        <ScoringCanvas name={this.props.character+"_1_phase5"} phase={5} character={this.props.character} updateRef={this.updateRefFive} disabled={this.state.disablePhaseFive} />
-                        <ScoringCanvas name={this.props.character+"_2_phase5"} phase={5} character={this.props.character} updateRef={this.updateRefFive} disabled={this.state.disablePhaseFive} />
-                        <ScoringCanvas name={this.props.character+"_3_phase5"} phase={5} character={this.props.character} updateRef={this.updateRefFive} disabled={this.state.disablePhaseFive} />
+                        <ScoringCanvas name={this.props.character+"_1_phase5"} phase={5} character={this.props.character} updateController={this.updateRefFive} disabled={this.state.disablePhaseFive} />
+                        <ScoringCanvas name={this.props.character+"_2_phase5"} phase={5} character={this.props.character} updateController={this.updateRefFive} disabled={this.state.disablePhaseFive} />
+                        <ScoringCanvas name={this.props.character+"_3_phase5"} phase={5} character={this.props.character} updateController={this.updateRefFive} disabled={this.state.disablePhaseFive} />
                         {/** phase 5 (scoring) takes care of its own buttons */}
                     </div>
 
