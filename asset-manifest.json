@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/quill/static/css/main.3c2788b0.css",
-    "main.js": "/quill/static/js/main.f8f21159.js",
-    "static/js/787.0ed6a2ca.chunk.js": "/quill/static/js/787.0ed6a2ca.chunk.js",
-    "static/media/chalkboard_light.woff": "/quill/static/media/chalkboard_light.eaaaabca3cc2b1a1ad64.woff",
-    "index.html": "/quill/index.html",
-    "main.3c2788b0.css.map": "/quill/static/css/main.3c2788b0.css.map",
-    "main.f8f21159.js.map": "/quill/static/js/main.f8f21159.js.map",
-    "787.0ed6a2ca.chunk.js.map": "/quill/static/js/787.0ed6a2ca.chunk.js.map"
+    "main.css": "/Quill/static/css/main.a2ded3a4.css",
+    "main.js": "/Quill/static/js/main.38621203.js",
+    "static/js/787.0ed6a2ca.chunk.js": "/Quill/static/js/787.0ed6a2ca.chunk.js",
+    "static/media/chalkboard_light.woff": "/Quill/static/media/chalkboard_light.eaaaabca3cc2b1a1ad64.woff",
+    "index.html": "/Quill/index.html",
+    "main.a2ded3a4.css.map": "/Quill/static/css/main.a2ded3a4.css.map",
+    "main.38621203.js.map": "/Quill/static/js/main.38621203.js.map",
+    "787.0ed6a2ca.chunk.js.map": "/Quill/static/js/787.0ed6a2ca.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3c2788b0.css",
-    "static/js/main.f8f21159.js"
+    "static/css/main.a2ded3a4.css",
+    "static/js/main.38621203.js"
   ]
 }
